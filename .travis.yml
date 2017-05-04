@@ -1,0 +1,45 @@
+language: generic
+
+sudo: false
+
+notifications:
+    email: false
+
+# Only build pushes from the master branch. PRs are always built. The master
+# build will also push the newly built docs to fatiando.org/dev
+branches:
+    only:
+        - master
+
+os:
+    - linux
+
+env:
+    global:
+
+    # Build under all combinations of the of the following
+    matrix:
+        - PYTHON=3.6
+
+before_install:
+    # Get Miniconda from Continuum
+    # Need to source the script to set the PATH variable in this environment
+    # (not the scripts environment)
+    - source ci/install-miniconda.sh
+    # Create a conda env to install required libraries
+    - conda update --yes conda
+    - conda create -n testenv --yes pip python=$PYTHON
+    - source activate testenv
+
+install:
+    # Install dependencies
+    - conda install --yes --file requirements.txt -c conda-forge
+    # Show installed pkg information for postmortem diagnostic
+    - conda list
+
+script:
+    # Build the textbook
+    - echo "Build textbook"
+
+after_success:
+    - echo "Push HTML to dev version"
