@@ -75,8 +75,6 @@ Thoughts and ideas on the layout.
 
 ## License
 
-![Creative Commons Attribution-ShareAlike 4.0 International License](images/cc-by-sa.png)
-
 This work is licensed under a
 [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
 
